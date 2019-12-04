@@ -2,5 +2,16 @@
     "name": "ikelutra/redbadger-tech-test",
     "type": "project",
     "license": "MIT",
-    "require": {}
+    "require": {
+        "phpunit/phpunit": "^8.4"
+    },
+    "autoload" : {
+        "psr-4" : {"IkeLutra\\RedBadger\\" : "src/"}
+    },
+    "autoload-dev" : {
+        "psr-4" : {"Tests\\IkeLutra\\RedBadger\\" : "tests/"}
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    }
 }
