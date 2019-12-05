@@ -10,7 +10,7 @@ class LeftTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->prophet = new \Prophecy\Prophet;
+        $this->prophet = new \Prophecy\Prophet();
     }
 
     protected function tearDown(): void
