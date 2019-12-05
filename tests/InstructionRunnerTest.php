@@ -63,4 +63,17 @@ class InstructionRunnerTest extends TestCase
         $this->assertSame(2, $robot3->getDirection());
         $this->assertFalse($robot3->isLost());
     }
+
+    public function testRunWithSimpleLost()
+    {
+        $runner = new InstructionRunner($this->instructionMap, $this->map);
+        $robot1 = new Robot([5, 3], 0);
+        $robot1 = $runner->run($robot1, ['F']);
+        $this->assertTrue($robot1->isLost());
+        $this->assertSame([5, 3], $robot1->getCoordinates());
+        $robot2 = new Robot([5, 3], 0);
+        $robot2 = $runner->run($robot2, ['F', 'L', 'F', 'L', 'F']);
+        $this->assertFalse($robot2->isLost());
+        $this->assertSame([4, 2], $robot2->getCoordinates());
+    }
 }
