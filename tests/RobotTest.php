@@ -44,4 +44,12 @@ class RobotTest extends TestCase
         $robot->setDirection(2);
         $this->assertSame(2, $robot->getDirection());
     }
+
+    public function testLost()
+    {
+        $robot = new Robot();
+        $this->assertFalse($robot->isLost());
+        $robot->markAsLost();
+        $this->assertTrue($robot->isLost());
+    }
 }

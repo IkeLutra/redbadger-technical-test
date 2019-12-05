@@ -16,6 +16,8 @@ class Robot implements CoordinateInterface, DirectionInterface
      */
     private $direction;
 
+    private $lost = false;
+
     public function __construct(array $coordinates = [0, 0], int $direction = 0)
     {
         $this->coordinates = $coordinates;
@@ -57,6 +59,17 @@ class Robot implements CoordinateInterface, DirectionInterface
     {
         // TODO: Validate direction
         $this->direction = $direction;
+        return $this;
+    }
+
+    public function isLost(): bool
+    {
+        return $this->lost;
+    }
+
+    public function markAsLost(): self
+    {
+        $this->lost = true;
         return $this;
     }
 }
