@@ -45,4 +45,9 @@ class Map
         }
         return false;
     }
+
+    public function getMaxCoordinates(): array
+    {
+        return [$this->maxX, $this->maxY];
+    }
 }
