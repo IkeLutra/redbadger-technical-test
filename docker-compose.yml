@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  php:
+    image: php:7.4
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: php /app/bin/run.php
+  composer:
+    image: composer
+    volumes:
+      - .:/app

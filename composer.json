@@ -15,5 +15,10 @@
         "phpunit/phpunit": "^8.4",
         "squizlabs/php_codesniffer": "^3.5",
         "phpspec/prophecy": "^1.9"
+    },
+    "config": {
+        "platforn": {
+            "php": "7.4.0"
+        }
     }
 }
