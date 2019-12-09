@@ -15,6 +15,12 @@ class Map
     {
         $this->maxX = $maxCoordinates[0];
         $this->maxY = $maxCoordinates[1];
+        if ($this->maxX > 50) {
+            throw new MapTooLargeException("X coordinate {$this->maxX} is larger than 50");
+        }
+        if ($this->maxY > 50) {
+            throw new MapTooLargeException("Y coordinate {$this->maxY} is larger than 50");
+        }
     }
 
     public function isOutOfBounds(array $coordinates): bool

@@ -4,6 +4,7 @@ namespace Tests\IkeLutra\RedBadger;
 
 use PHPUnit\Framework\TestCase;
 use IkeLutra\RedBadger\Map;
+use IkeLutra\RedBadger\MapTooLargeException;
 
 class MapTest extends TestCase
 {
@@ -34,5 +35,19 @@ class MapTest extends TestCase
         $this->assertFalse($map->doesThisSmell([5, 3]));
         $map->addScent([5, 3]);
         $this->assertTrue($map->doesThisSmell([5, 3]));
+    }
+
+    public function testMaxMapSizeX()
+    {
+        $this->expectException(MapTooLargeException::class);
+        $this->expectExceptionMessage('X coordinate 51 is larger than 50');
+        $map = new Map([51, 40]);
+    }
+
+    public function testMaxMapSizeY()
+    {
+        $this->expectException(MapTooLargeException::class);
+        $this->expectExceptionMessage('Y coordinate 52 is larger than 50');
+        $map = new Map([10, 52]);
     }
 }
