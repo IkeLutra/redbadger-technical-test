@@ -36,8 +36,7 @@ class InputParser
 
     public function parse(string $input): array
     {
-        // TODO: Replace with preg_split to handle different line endings
-        $lines = explode("\n", $input);
+        $lines = preg_split("/\r\n|\n|\r/", $input);
         $parsed = [];
         if (isset($lines[0])) {
             $coordinates = $this->convertArrayToInt(explode(' ', $lines[0]));
