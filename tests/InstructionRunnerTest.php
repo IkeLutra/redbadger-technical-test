@@ -9,6 +9,7 @@ use IkeLutra\RedBadger\Instruction\Right;
 use IkeLutra\RedBadger\Robot;
 use IkeLutra\RedBadger\InstructionRunner;
 use IkeLutra\RedBadger\Map;
+use stdClass;
 
 class InstructionRunnerTest extends TestCase
 {
@@ -75,5 +76,22 @@ class InstructionRunnerTest extends TestCase
         $robot2 = $runner->run($robot2, ['F', 'L', 'F', 'L', 'F']);
         $this->assertFalse($robot2->isLost());
         $this->assertSame([4, 2], $robot2->getCoordinates());
+    }
+
+    public function testExceptionWhenNotCallable()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Instruction [R] is not callable');
+        $instructionMap = ['L' => new Left(), 'R' => new stdClass];
+        $runner = new InstructionRunner($instructionMap, $this->map);
+    }
+
+    public function testExceptionWhenInvalidInstruction()
+    {
+        $runner = new InstructionRunner($this->instructionMap, $this->map);
+        $robot = new Robot([0, 0 ], 0);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Instruction [B] not yet implemented');
+        $runner->run($robot, ['F', 'B']);
     }
 }

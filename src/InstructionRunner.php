@@ -9,7 +9,11 @@ class InstructionRunner
 
     public function __construct(array $instructionMap, Map $map)
     {
-        // TODO: Validate instructionMap only contains callables
+        foreach ($instructionMap as $letter => $instruction) {
+            if (!is_callable($instruction)) {
+                throw new \Exception("Instruction [$letter] is not callable");
+            }
+        }
         $this->instructionMap = $instructionMap;
         $this->map = $map;
     }
@@ -18,6 +22,9 @@ class InstructionRunner
     {
         foreach ($instructions as $letter) {
             $oldCoordinates = $robot->getCoordinates();
+            if (!isset($this->instructionMap[$letter])) {
+                throw new \Exception("Instruction [$letter] not yet implemented");
+            }
             $this->instructionMap[$letter]($robot);
             if ($this->map->isOutOfBounds($robot->getCoordinates())) {
                 $robot->setCoordinates($oldCoordinates);
