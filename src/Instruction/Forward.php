@@ -8,6 +8,8 @@ class Forward
 {
     /**
      * TODO: Don't rely on Robot use interface instead
+     *
+     * Moves the robot 1 space forward (dependent on the direction)
      */
     public function __invoke(Robot $robot)
     {

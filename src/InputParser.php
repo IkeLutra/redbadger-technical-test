@@ -4,6 +4,12 @@ namespace IkeLutra\RedBadger;
 
 class InputParser
 {
+    /**
+     * Converts all the values of an array into integers
+     *
+     * @param array $original
+     * @return array
+     */
     private function convertArrayToInt(array $original): array
     {
         $new = [];
@@ -13,6 +19,12 @@ class InputParser
         return $new;
     }
 
+    /**
+     * Converts a direction string into the relevant integer
+     *
+     * @param string $letter
+     * @return integer
+     */
     private function convertDirectionToInt(string $letter): int
     {
         // TODO: Abstract this to its own class
@@ -34,6 +46,14 @@ class InputParser
         return $number;
     }
 
+    /**
+     * Parses a multi-line string into
+     * A map based on the coordinates on the first line
+     * An array of robots with their matching instruction strings
+     *
+     * @param string $input
+     * @return array
+     */
     public function parse(string $input): array
     {
         $lines = preg_split("/\r\n|\n|\r/", $input);

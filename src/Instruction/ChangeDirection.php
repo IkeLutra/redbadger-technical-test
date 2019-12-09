@@ -8,6 +8,13 @@ abstract class ChangeDirection
 {
     protected $directionModifier = 0;
 
+    /**
+     * Changes direction using directionModifier
+     * and ensures it still lies between 0 and 3 inclusive
+     *
+     * @param integer $direction
+     * @return integer
+     */
     private function normalize(int $direction): int
     {
         if ($direction < 0) {
@@ -18,6 +25,12 @@ abstract class ChangeDirection
         return $direction;
     }
 
+    /**
+     * Sets new direction on unit
+     *
+     * @param DirectionInterface $unit
+     * @return DirectionInterface
+     */
     public function __invoke(DirectionInterface $unit): DirectionInterface
     {
         $direction = $unit->getDirection();

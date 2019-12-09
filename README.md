@@ -34,3 +34,10 @@ If using local php run:
 php bin/run.php move:robots example_input.txt
 ```
 Replacing `example_input.txt` with the path to a input file
+
+## Running tests
+
+Using local php:
+```
+vendor/bin/phpunit tests/
+```

@@ -4,13 +4,39 @@ namespace IkeLutra\RedBadger;
 
 class Map
 {
+    /**
+     * Minimum X coordinate
+     *
+     * @var integer
+     */
     private $minX = 0;
+    /**
+     * Minimum Y coordinate
+     *
+     * @var integer
+     */
     private $minY = 0;
+    /**
+     * Maximum X coordinate
+     *
+     * @var integer
+     */
     private $maxX;
+    /**
+     * Maximum Y cooridinate
+     *
+     * @var integer
+     */
     private $maxY;
 
     private $scents = [];
 
+    /**
+     * Takes an array of coordinates that defines the max X and Y coordinates
+     *
+     * @throws MapTooLargeException
+     * @param array $maxCoordinates
+     */
     public function __construct(array $maxCoordinates)
     {
         $this->maxX = $maxCoordinates[0];
@@ -23,6 +49,12 @@ class Map
         }
     }
 
+    /**
+     * Checks if a set of coordinates if out of the map's allowed grid
+     *
+     * @param array $coordinates
+     * @return boolean
+     */
     public function isOutOfBounds(array $coordinates): bool
     {
         $x = $coordinates[0];
@@ -37,11 +69,23 @@ class Map
         return false;
     }
 
+    /**
+     * Adds a marker to the map to note where previouse robots were lost
+     *
+     * @param array $coordinates
+     * @return void
+     */
     public function addScent(array $coordinates): void
     {
         $this->scents[] = $coordinates;
     }
 
+    /**
+     * Checks if the coordinates match any exisiting scents
+     *
+     * @param array $coordinates
+     * @return boolean
+     */
     public function doesThisSmell(array $coordinates): bool
     {
         foreach ($this->scents as $scent) {
@@ -52,6 +96,11 @@ class Map
         return false;
     }
 
+    /**
+     * Gets the maximum X and Y coordinates
+     *
+     * @return array
+     */
     public function getMaxCoordinates(): array
     {
         return [$this->maxX, $this->maxY];

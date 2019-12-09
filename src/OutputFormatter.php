@@ -4,6 +4,12 @@ namespace IkeLutra\RedBadger;
 
 class OutputFormatter
 {
+    /**
+     * Converts direction number into a letter
+     *
+     * @param integer $number
+     * @return string
+     */
     private function directionToString(int $number): string
     {
         switch ($number) {
@@ -23,7 +29,13 @@ class OutputFormatter
         }
         return $direction;
     }
-
+    /**
+     * Takes robot and formats a string for output
+     * containing coordinates, direction and whether it is lost
+     *
+     * @param Robot $robot
+     * @return void
+     */
     public function format(Robot $robot)
     {
         $coordinates = $robot->getCoordinates();
